@@ -1,0 +1,20 @@
+.align-mid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border: 1px solid black;
+    padding: 40px;
+    border-radius: 2%;
+    background-color: cornsilk;
+}
+
+.button-style{
+    width: 40%
+}
+
+.main-window {
+    background-color:bisque;
+    height: calc(100vh - 58px);
+}

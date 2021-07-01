@@ -1,0 +1,17 @@
+.form-body {
+    max-width: 800px;
+    padding: 40px;
+    border: 2px solid maroon;
+}
+
+.form-input:focus {
+    border-color: var(--themeColor);
+    box-shadow: 0 0 0 0.25rem var(--fontbackColor);
+}
+
+.form-input {
+    border-bottom: 1px solid var(--themeColor);
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}

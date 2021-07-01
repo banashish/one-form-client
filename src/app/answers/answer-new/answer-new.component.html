@@ -1,0 +1,44 @@
+<div class="container-fluid py-5" *ngIf="isLoading" [ngStyle]="{'background-color': form.color}">
+    <div class="container form-body" style="background-color: white;">
+        <div class="text-center mb-4">
+            <h3 [ngStyle]="{'color': form.color}">{{form.name}}</h3>
+            <p>{{form.description}}</p>
+        </div>
+        <hr>
+        <div class="mt-5">
+            <form [formGroup]="question_form" (submit)="onSubmit()">
+                <div *ngFor="let question of form.question" class="mb-3">
+                    <div [ngSwitch]="question.kind">
+                        <div *ngSwitchCase="'short_text'">
+                            <label for={{question.slug}} class="form-label form-input-label">{{question.text}}</label>
+                            <input type="text" class="form-control form-input" formControlName={{question.slug}} id={{question.slug}} [ngClass]="{ 'is-invalid': submitted && question.required && f(question.slug).errors }">
+                        </div>
+                        <div *ngSwitchCase="'long_text'">
+                            <label for={{question.slug}} class="form-label form-input-label">{{question.text}}</label>
+                            <textarea class="form-control form-input" formControlName={{question.slug}} id={{question.slug}} rows="3" [ngClass]="{ 'is-invalid': submitted && question.required && f(question.slug).errors }"></textarea>
+                        </div>
+                        <div *ngSwitchCase="'integer'">
+                            <label for={{question.slug}} class="form-label form-input-label">{{question.text}}</label>
+                            <input type="number" class="form-control form-input" formControlName={{question.slug}} id={{question.slug}} [ngClass]="{ 'is-invalid': submitted && question.required && f(question.slug).errors }">
+                        </div>
+                        <div *ngSwitchCase="'boolean'">
+                            <label for={{question.slug}} class="form-label form-input-label">{{question.text}}</label>
+                            <select class="form-select form-input"formControlName={{question.slug}} aria-label="Default select example" id={{question.slug}} [ngClass]="{ 'is-invalid': submitted && question.required && f(question.slug).errors }">
+                                <option selected>Open this select menu</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div *ngIf="submitted && question.required && !!f(question.slug).errors" class="text-danger">
+                        <div *ngIf="f(question.slug).errors.required"><small>*this field is required</small></div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto mt-5 mb-3">
+                    <button class="btn btn-primary" type="submit" [disabled]="!question_form.dirty || saveInProgress">Button</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+

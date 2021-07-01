@@ -1,0 +1,96 @@
+<div class="container main-body">
+  <h4 class="mt-5 header-body">Define your form</h4>
+  <div class="card mt-4" [ngStyle]="{'border': '2px '+'solid '+ f.color.value}">
+    <div class="card-header" [ngStyle]="{'background-color': f.color.value}">{{form.controls.name.value || 'Your form name'}}
+      <span class="float-end" *ngIf="form_properties && form_properties.status">
+        <button class="btn btn-light" style="padding: 7px;" [routerLink]="['/answers',form_properties.slug,'new']">
+          <span>
+            <i class="bi bi-eye-fill"></i>
+          </span>
+          <span>
+            view form
+          </span>
+        </button>  
+      </span>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="[form_properties ? onUpdate() : onSubmit()]">
+      <div class="card-body row gx-5">
+        <div class="col">
+          <div class="card-title row mb-3">
+            <div class="col-sm-3">
+              <label for="formNameLabel" class="col-form-label">Name</label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                id="formNameLabel"
+                placeholder="Your form name"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+              />
+              <div *ngIf="f.name.errors && submitted" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">*name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-title row">
+            <div class="col-sm-3">
+              <label for="description" class="col-form-label"
+                >Description</label
+              >
+            </div>
+            <div class="col-sm-9">
+              <textarea
+                class="form-control"
+                id="description"
+                formControlName="description"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="card-title row">
+            <div class="col-sm-3">
+              <label for="exampleColorInput" class="col-form-label"
+                >Pick your color for form</label
+              >
+            </div>
+            <div class="col-sm-9">
+                <input
+                  type="color"
+                  class="form-control form-control-color"
+                  formControlName="color"
+                  id="exampleColorInput"
+                  value="#563d7c"
+                  title="Choose your color"
+                />
+            </div>
+          </div>
+        </div>
+        <div class="col right-col">
+          <div class="row form-check form-switch gx-5">
+            <div class="col-sm-4">
+              <input
+                class="form-control form-check-input"
+                type="checkbox"
+                formControlName="status"
+                id="flexSwitchCheckChecked"
+              />
+            </div>
+            <div class="col-sm-8">
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Status</label
+              >
+            </div>
+          </div>
+          <button type="submit" *ngIf="!form_properties" class="btn btn-outline-primary create-btn" [disabled]="!form.dirty || saveInProgress">
+            Create
+          </button>
+          <button type="submit" *ngIf="form_properties" class="btn btn-outline-primary create-btn" [disabled]="!form.dirty || saveInProgress">
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container main-body mt-4">
+    <div *ngIf="question_list.length > 0">
+        <div *ngFor = "let question of question_list; let i = index">
+            <app-question-form [question]="question" [form_slug]="form_properties" [index]="i"></app-question-form>
+        </div>
+        <button type="button" class="btn btn-outline-secondary float-end mb-4" (click)="addQuestion()"><i class="bi bi-plus"></i> Add question</button>
+    </div>
+    <div *ngIf="question_list.length == 0">
+        <div class="text-center">
+            <p> You don't have any questions created for now in your form. </p>
+            <button type="button" class="btn btn-outline-secondary" (click)="addQuestion()">Add a question</button>
+        </div>
+    </div>
+</div>

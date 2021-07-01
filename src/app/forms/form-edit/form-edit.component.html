@@ -1,0 +1,2 @@
+<app-form-form [(form_properties)]="form"></app-form-form>
+<app-question-list *ngIf="form" [(form_properties)]="form.slug" [question_list]="form.question"></app-question-list>

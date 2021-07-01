@@ -1,0 +1,84 @@
+<div class="card mb-5">
+  <div class="card-header">
+      Question {{index+1}}
+      <span style="cursor:pointer;">
+        <i class="bi bi-trash-fill" style="font-size: 20px; color: black;float: right" (click)="onDelete()"></i>
+      </span>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="questionForm" (ngSubmit)="[question.slug ? onUpdate() : onSubmit()]">
+      <div class="mb-3">
+        <label for="questionText" class="form-label">Question text</label>
+        <input
+          type="text"
+          formControlName="text"
+          class="form-control"
+          id="questionText"
+          placeholder="Enter your question text"
+          [ngClass]="{ 'is-invalid': submitted && f.text.errors }"
+        />
+        <div *ngIf="f.text.errors && submitted" class="invalid-feedback">
+          <div *ngIf="f.text.errors.required">*text is required</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="questionKind" class="form-label">Question Kind</label>
+          <select
+            class="form-select"
+            formControlName="kind"
+            aria-label="Default select example"
+            id="questionKind"
+            placeholder="select your question kind"
+            [ngClass]="{ 'is-invalid': submitted && f.kind.errors }"
+          >
+            <option value="short_text">short text</option>
+            <option value="long_text">long text</option>
+            <option value="integer">integer</option>
+            <option value="boolean">boolean</option>
+          </select>
+          <div *ngIf="f.kind.errors && submitted" class="invalid-feedback">
+            <div *ngIf="f.kind.errors.required">*kind is required</div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-check form-switch toggleButton">
+            <label class="form-label" for="flexSwitchCheckDefault"
+              >Mandatory</label
+            >
+            <input
+              class="form-check-input"
+              formControlName="required"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+            />
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="row toggleButton">
+            <div class="col-sm-3">
+              <label for="questionText" class="form-label">order</label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="order"
+                id="questionText"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" *ngIf="!question.slug" class="btn btn-outline-primary create-btn" [disabled]="!questionForm.dirty || saveInProgress">
+        Create
+      </button>
+      <button type="submit" *ngIf="question.slug" class="btn btn-outline-primary create-btn" [disabled]="!questionForm.dirty || saveInProgress">
+        Update
+      </button>
+    </form>
+  </div>
+</div>

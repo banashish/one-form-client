@@ -3,9 +3,12 @@
         <span class="fs-3 fw-bold" style="color: white;cursor:pointer" (click)="goToHome()">
             OneForm
         </span>
-        <span class="float-end pt-1">
+        <span class="float-end pt-1" *ngIf="!userSignedIn">
             <button class="btn btn-outline-light rounded-pill" (click)="register()">Register</button>
             <button class="btn btn-outline-light rounded-pill ms-3" (click)="signin()">Sign In</button>
+        </span>
+        <span class="float-end pt-1" *ngIf="userSignedIn">
+            <button class="btn btn-outline-light rounded-pill ms-3" (click)="logout()">Log Out</button>
         </span>
     </div>
 </div>

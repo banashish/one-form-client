@@ -1,0 +1,12 @@
+.toggleButton {
+    margin-top: 2.5rem;
+}
+
+.create-btn {
+    float: right;
+    right: 30px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    width: 80px;
+
+}

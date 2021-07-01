@@ -1,0 +1,24 @@
+.main-body{
+    max-width: 900px;
+}
+
+.header-body {
+    background-color: antiquewhite;
+    padding: 15px;
+    font-weight: 700;
+    border: 2px solid blueviolet;
+}
+
+.form-body {
+    width: 300px;
+}
+
+.right-col {
+    position: relative;
+}
+
+.create-btn {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+}

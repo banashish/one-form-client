@@ -1,0 +1,23 @@
+.form-container {
+    max-width: 800px;
+}
+
+.header {
+    background-color: rgb(255, 212, 151);
+    color: blueviolet;
+    font-weight: 700;
+}
+
+.add-form-button{
+    width: 64px;
+    font-size: 34px;
+    height: 64px;
+    font-weight: 800;
+    padding-bottom: 58px;
+}
+
+.no-form {
+    background-color: rgb(255, 212, 151);
+    opacity: 75%;
+    max-width: 400px;
+}

@@ -1,0 +1,51 @@
+<div class="container  mt-4">
+    <div *ngIf="listLoading && formList.length == 0">
+      <div class="text-center p-3 mt-5">
+          <p>
+            For now you have not added any form.
+          </p>
+          <button type="button mt-2" class="btn btn-outline-primary" [routerLink]="'/forms/new'">Add your own form</button>
+      </div>
+    </div>
+    <div *ngIf="listLoading && formList.length > 0">
+        <div class="container-md form-container">
+            <h2 class="header p-2 ps-4 shadow-sm rounded">Forms</h2>
+            <div class="card mt-4 mb-3" *ngFor="let form of formList">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title">{{form.name}}</h5>
+                      <p class="card-text">{{form.description}}.</p>
+                      <a [routerLink]="['/answers',form.slug,'new']"> Open your form</a>
+                    </div>
+                    <div class="col">
+                      <div class="float-end">
+                        <a (click)="onDelete(form)">
+                          <i class="bi bi-trash-fill" style="font-size: 25px; color: black;"></i>
+                        </a>
+                      </div>
+                      <br style="clear: right;">
+                      <div class="float-end">
+                        <a [routerLink]="['/forms',form.slug]">
+                          <i class="bi bi-chevron-double-right" style="font-size: 25px; color: black;"></i>
+                        </a>                      
+                      </div>
+                      <br style="clear: right;">
+                      <div class="float-end mt-1">
+                        <a [routerLink]="['/answer',form.slug]">
+                          view answers
+                        </a>                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer text-center text-muted" [routerLink]="['/forms',form.slug]">
+                  {{form.created_at}}
+                </div>
+              </div>
+        </div>
+        <div class="fixed-bottom mb-3 me-3">
+            <button type="button" class="btn  btn-primary rounded-circle float-end add-form-button " [routerLink]="'/forms/new'"><i class="bi bi-plus"></i></button>
+        </div>
+    </div>
+</div>
